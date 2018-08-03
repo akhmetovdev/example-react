@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { __, curry, pipe, uniq, append, remove } from 'ramda';
 
-import ToDoFormWrapper from './ToDoFormWrapper/ToDoFormWrapper';
-import ToDoList from './ToDoList/ToDoList';
 import { Provider } from '../context/ToDoContext';
-import './App.css';
+import ToDoFormWrapper from './ToDoFormWrapper';
+import ToDoList from './ToDoList';
 
 const appendIfNotExist = pipe(append, uniq);
 const removeByIndex = curry(remove(__, 1, __));
@@ -26,8 +25,13 @@ class App extends Component {
 
     return (
       <Provider value={{ state, actions }}>
-        <ToDoFormWrapper />
-        <ToDoList />
+        <div className="container mx-auto py-10 px-5">
+          <h1 className="font-black text-lg text-grey-darkest mb-10 text-center">
+            React Typical ToDo App
+          </h1>
+          <ToDoFormWrapper />
+          <ToDoList />
+        </div>
       </Provider>
     );
   }
